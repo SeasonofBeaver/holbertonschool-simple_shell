@@ -8,6 +8,6 @@
 
 char *getCurrentWorkingDirectory(void);
 char *getUsername(void);
-
+void printPrompt(const char *username, const char *currDir);
 
 #endif /* shell_h */

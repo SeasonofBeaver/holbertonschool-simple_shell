@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "printPrompt.h"
 
 void printPromt(const char *username, const char *currDir);
 int _exec(char **args, char *command);
