@@ -1,8 +1,4 @@
 #include "shell.h"
-#include "printPrompt.h"
-
-void printPromt(const char *username, const char *currDir);
-int _exec(char **args, char *command);
 
 int main(void)
 {
@@ -19,6 +15,7 @@ int main(void)
 	{
 		printPromt(username, currDir);
 
+
 		getlineLength = getline(&input, &maxLength, stdin);
 		if (getlinelength == -1)
 		{
@@ -26,16 +23,17 @@ int main(void)
 			free(currDir);
 			free(username);
 			free(input);
-			exit(EXIT_FAILURE);
+			exit(status);
 		}
-
 		command = input;
 		while (*command == ' ' || *command == '\t')
 			command++;
 		if (strcmp(command, "\n") == 0)
 			continue;
 		command[strlen(command) - 1] = '\0';
+
 		args = parseCommand(command);
+
 		if (args[0] == NULL)
 		{
 			fprintf(stderr, "./hsh: 1: %s: not found\n", strtok(command, " "));
@@ -48,6 +46,7 @@ int main(void)
 		}
 		free(args);
 	}
+
 
 	free(currDir);
 	free(username);
