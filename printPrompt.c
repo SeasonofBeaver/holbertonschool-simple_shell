@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include "printPrompt.h"
+#include "shell.h"
+
 
 void printPrompt(const char *username, const char *currDir)
 {
