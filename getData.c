@@ -20,7 +20,7 @@ char *getCurrentWorkingDirectory(void)
 		free(cwd);
 		exit(EXIT_FAILURE);
 	}
-	return cwd
+	return cwd;
 }
 char *getUsername(void)
 {

@@ -20,7 +20,7 @@ int _exec(char **args, char *command)
 	{
 		if (execve(args[0], args, environ) == -1)
 		{
-			perro(comman);
+			perror(command);
 			exit(1);
 		}
 	}

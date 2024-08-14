@@ -7,17 +7,17 @@ int main(void)
 	char **args = NULL;
 	char *input = NULL;
 	char *command = NULL;
-	char *currDir = getCurrentWorkingDirectory;
-	char *username = getUsername;
+	char *currDir = getCurrentWorkingDirectory();
+	char *username = getUsername();
 	int status = 0;
 
 	while (1)
 	{
-		printPromt(username, currDir);
+		printPrompt(username, currDir);
 
 
 		getlineLength = getline(&input, &maxLength, stdin);
-		if (getlinelength == -1)
+		if (getlineLength == -1)
 		{
 			perror("getline");
 			free(currDir);
