@@ -1,10 +1,10 @@
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <pwd.h>
-#include <sys/types.h>
-#include <limits.h>
-#include <string.h>
+#include "shell.h"
+
+/**
+ * getCurrentWorkingDirectory - finds the cwd of the shell
+ *
+ * Return: the path to the cwd
+ */
 
 char *getCurrentWorkingDirectory(void)
 {
@@ -23,6 +23,13 @@ char *getCurrentWorkingDirectory(void)
 	}
 	return (cwd);
 }
+
+/**
+ * getUsername - finds out the username of the active person
+ *
+ * Return: Username
+ */
+
 char *getUsername(void)
 {
 	struct passwd *pw = getpwuid(geteuid());

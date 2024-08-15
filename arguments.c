@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ * parseCommand - puts the commandline into an array in order
+ *
+ *@command: commandline to be split
+ *
+ *Return: array with the split commandline
+ */
+
 char **parseCommand(char *command)
 {
 	char **args = NULL;

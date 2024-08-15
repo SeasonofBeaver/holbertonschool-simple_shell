@@ -1,5 +1,15 @@
 #include "shell.h"
 
+/**
+ * checkIfEnded - checks if the end of the file is reached
+ *
+ * @input: user input
+ *
+ * @getlineLength: Length of the user input line
+ *
+ * @status: status to exit with
+ */
+
 void checkIfEnded(char *input, ssize_t getlineLength, int status)
 {
 	if (getlineLength == EOF)
@@ -11,13 +21,17 @@ void checkIfEnded(char *input, ssize_t getlineLength, int status)
 	}
 }
 
+/**
+ * main - shell function that can execute simple commands
+ *
+ * Return: 0 on success
+ */
+
 int main(void)
 {
 	size_t maxLength = 4096;
 	ssize_t getlineLength = 0;
-	char **args = NULL;
-	char *input = NULL;
-	char *command = NULL;
+	char **args = NULL, *input = NULL, *command = NULL;
 	char *currDir = getCurrentWorkingDirectory();
 	char *username = getUsername();
 	int status = 0;
@@ -26,14 +40,7 @@ int main(void)
 	{
 		printPromt(username, currDir);
 		getlineLength = getline(&input, &maxLength, stdin);
-		if (getlineLength == -1)
-		{
-			perror("getline");
-			free(currDir);
-			free(username);
-			free(input);
-			exit(status);
-		}
+		checkIfEnded(input, getlineLength, status);
 		command = input;
 		while (*command == ' ' || *command == '\t')
 			command++;
@@ -52,7 +59,6 @@ int main(void)
 			free(args[0]);
 		}
 		free(args);
-	}
 	free(currDir);
 	free(username);
 	free(input);
