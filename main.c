@@ -38,7 +38,7 @@ int main(void)
 
 	while (1)
 	{
-		printPromt(username, currDir);
+		printPrompt(username, currDir);
 		getlineLength = getline(&input, &maxLength, stdin);
 		checkIfEnded(input, getlineLength, status);
 		command = input;
@@ -59,6 +59,7 @@ int main(void)
 			free(args[0]);
 		}
 		free(args);
+	}
 	free(currDir);
 	free(username);
 	free(input);
