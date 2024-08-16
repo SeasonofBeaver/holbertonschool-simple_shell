@@ -19,5 +19,7 @@ char *getUsername(void);
 char **parseCommand(char *command);
 void printPrompt(const char *username, const char *currDir);
 int _exec(char **args, char *command);
+char *find_path(char *command);
+int _exec(char **args, char *command);
 
 #endif /* shell_h */
