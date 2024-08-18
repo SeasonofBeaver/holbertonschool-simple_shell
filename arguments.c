@@ -45,3 +45,20 @@ char **parseCommand(char *command)
 	args[i] = NULL;
 	return (args);
 }
+
+int extraCommands(char **args, char *input, int status)
+{
+	if (strcmp(args[0], "exit") == 0)
+	{
+		free(args);
+		free(input);
+		exit(status);
+	}
+	if (strcmp(args[0], "env") == 0)
+	{
+		printEnvironment(environ);
+		free(args);
+		return (1);
+	}
+	return (0);
+}

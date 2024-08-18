@@ -20,6 +20,7 @@ char **parseCommand(char *command);
 void printPrompt(const char *username, const char *currDir);
 int _exec(char **args, char *command);
 char *find_path(char *command);
-int _exec(char **args, char *command);
+int extraCommands(char **args, char *input, int status);
+void printEnvironment(char **environ);
 
 #endif /* shell_h */

@@ -48,6 +48,12 @@ int main(void)
 			continue;
 		command[strlen(command) - 1] = '\0';
 		args = parseCommand(command);
+		if (extraCommands(args, input, status))
+			continue;
+		if (strchr(args[0], '/') != NULL)
+			args[0] = strdup(args[0]);
+		else
+			args[0] = find_path(command);
 		if (args[0] == NULL)
 		{
 			fprintf(stderr, "./hsh: 1: %s: not found\n", strtok(command, " "));
