@@ -47,10 +47,15 @@ char **parseCommand(char *command)
 }
 
 /**
+ * extraCommands - looks at the first element in args for argument
  *
+ * @args: arguments of input
  *
+ * @input: string of user input
  *
+ * @status: status of programm
  *
+ * Return: 0 if no arguments found 1 if there were
  */
 
 int extraCommands(char **args, char *input, int status)
