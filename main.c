@@ -32,8 +32,7 @@ int main(void)
 	size_t maxLength = 4096;
 	ssize_t getlineLength = 0;
 	char **args = NULL, *input = NULL, *command = NULL;
-	char *currDir = getCurrentWorkingDirectory();
-	char *username = getUsername();
+	char *currDir = getCurrentWorkingDirectory(), *username = getUsername();
 	int status = 0;
 
 	while (1)
