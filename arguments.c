@@ -46,6 +46,13 @@ char **parseCommand(char *command)
 	return (args);
 }
 
+/**
+ *
+ *
+ *
+ *
+ */
+
 int extraCommands(char **args, char *input, int status)
 {
 	if (strcmp(args[0], "exit") == 0)
