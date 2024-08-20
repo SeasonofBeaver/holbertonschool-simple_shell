@@ -58,7 +58,7 @@ char **parseCommand(char *command)
  * Return: 0 if no arguments found 1 if there were
  */
 
-int extraCommands(char **args, char *input, int status)
+int extraCommands(char **args, char *input, int status, char *username)
 {
 	if (strcmp(args[0], "exit") == 0 && args[1] != NULL)
 	{
@@ -66,6 +66,7 @@ int extraCommands(char **args, char *input, int status)
 	}
 	if (strcmp(args[0], "exit") == 0)
 	{
+		free(username);
 		free(args);
 		free(input);
 		exit(status);

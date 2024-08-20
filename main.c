@@ -8,13 +8,16 @@
  * @getlineLength: Length of the user input line
  *
  * @status: status to exit with
+ *
+ * @username: username to be freed if EOF
  */
 
-void checkIfEnded(char *input, ssize_t getlineLength, int status)
+void checkIfEnded(char *input, ssize_t getlineLength, int status, char *username)
 {
 	if (getlineLength == EOF)
 	{
 		free(input);
+		free(username);
 		if (isatty(STDIN_FILENO))
 			printf("\n");
 		exit(status);
@@ -39,7 +42,7 @@ int main(void)
 	{
 		printPrompt(username, currDir);
 		getlineLength = getline(&input, &maxLength, stdin);
-		checkIfEnded(input, getlineLength, status);
+		checkIfEnded(input, getlineLength, status, username);
 		command = input;
 		while (*command == ' ' || *command == '\t')
 			command++;
@@ -47,7 +50,7 @@ int main(void)
 			continue;
 		command[strlen(command) - 1] = '\0';
 		args = parseCommand(command);
-		if (extraCommands(args, input, status))
+		if (extraCommands(args, input, status, username))
 			continue;
 		if (strchr(args[0], '/') != NULL)
 			args[0] = strdup(args[0]);

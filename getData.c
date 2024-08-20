@@ -8,20 +8,14 @@
 
 char *getCurrentWorkingDirectory(void)
 {
-	char *cwd = malloc(PATH_MAX);
+	static char lengthCWD[4096];
+	char *cwd = NULL;
 
-	if (cwd == NULL)
-	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
-	}
-	if (getcwd(cwd, PATH_MAX) == NULL)
-	{
-		perror("getcwd");
-		free(cwd);
-		exit(EXIT_FAILURE);
-	}
-	return (cwd);
+	getcwd(lengthCWD, sizeof(lengthCWD));
+	cwd = strrchr(lengthCWD, '/');
+	if (cwd)
+		return (cwd);
+	return (lengthCWD);
 }
 
 /**
