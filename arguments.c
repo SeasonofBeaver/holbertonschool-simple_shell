@@ -60,6 +60,10 @@ char **parseCommand(char *command)
 
 int extraCommands(char **args, char *input, int status)
 {
+	if (strcmp(args[0], "exit") == 0 && args[1] != NULL)
+	{
+		return (1);
+	}
 	if (strcmp(args[0], "exit") == 0)
 	{
 		free(args);
