@@ -10,11 +10,8 @@
  */
 char *find_path(char *command)
 {
-	char *path, *token, *full_path;
-	struct stat st;
+	char *path, *token, *full_path, *pathToken;
 
-	if (stat(command, &st) == 0)
-		return (strdup(command));
 	path = getenv("PATH");
 	if (path == NULL)
 		return (NULL);
@@ -27,6 +24,7 @@ char *find_path(char *command)
 	token = strtok(path, ":");
 	while (token != NULL)
 	{
+		pathToken = strdup(token);
 		full_path = malloc(strlen(token) + strlen(command) + 2);
 		if (full_path == NULL)
 		{
@@ -34,9 +32,9 @@ char *find_path(char *command)
 			free(path);
 			return (NULL);
 		}
-
-		sprintf(full_path, "%s/%s", token, command);
-		if (stat(full_path, &st) == 0)
+		sprintf(full_path, "%s/%s", pathToken, command);
+		free(pathToken);
+		if (access(full_path, X_OK) == 0)
 		{
 			free(path);
 			return (full_path);
@@ -44,7 +42,6 @@ char *find_path(char *command)
 		free(full_path);
 		token = strtok(NULL, ":");
 	}
-
 	free(path);
 	return (NULL);
 }
