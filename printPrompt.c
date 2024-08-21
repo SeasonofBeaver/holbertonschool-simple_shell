@@ -14,5 +14,9 @@ void printPrompt(const char *username, const char *currDir)
 	const char *BLUE = "\033[34m";
 	const char *RESET = "\033[0m";
 
-	printf("%s@%s%s:%s%s%s$ ", GREEN, username, RESET, BLUE, currDir, RESET);
+	if (isatty(STDIN_FILENO))
+	{
+		printf("%s@%s%s:%s%s%s$ ", GREEN, username, RESET, BLUE, currDir, RESET);
+		fflush(stdout);
+	}
 }

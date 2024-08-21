@@ -14,9 +14,9 @@ char *find_path(char *command)
 	struct stat st;
 
 	if (stat(command, &st) == 0)
-		return strdup(command);
+		return (strdup(command));
 	path = getenv("PATH");
-	if(path == NULL)
+	if (path == NULL)
 		return (NULL);
 	path = strdup(path);
 	if (path == NULL)
@@ -34,7 +34,7 @@ char *find_path(char *command)
 			free(path);
 			return (NULL);
 		}
-		
+
 		sprintf(full_path, "%s/%s", token, command);
 		if (stat(full_path, &st) == 0)
 		{
