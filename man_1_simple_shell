@@ -1,0 +1,47 @@
+.TH NAME
+
+hsh - Simple Shell
+
+.TH SYNOPSIS
+
+./hsh
+
+
+
+.SH DESCRIPTION
+
+The Simple Shell is a commandline that allows you to execute simple commands. 
+.br
+The Shell allows interactive and non-interactive mode.
+.br
+The Shell also checks for the CTRL + D command to close the Shell.
+
+.SH BUILD-INS
+
+These functions are built into the shell in addition to the standard commands.
+exit - to close the shell.
+.br
+env - to show the current environment of the shell.
+
+.SH LIBRARIES
+
+.IP stddef.h
+.IP stdlib.h
+.IP stdio.h
+.IP string.h
+.IP fcntl.h
+.IP sys/types.h
+.IP sys/wait.h
+.IP unistd.h
+.IP pwd.h
+.IP limits.h
+
+.SH RETURN VALUE
+
+The Shell exits with value 0 unless the status has been changed at runtime.
+
+.TH Author
+
+\fB @SeasonofBeaver
+
+\fB @Tissem-Ben
