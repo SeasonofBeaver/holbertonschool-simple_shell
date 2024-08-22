@@ -20,14 +20,14 @@ int _exec(char **args, char *command)
 	if (pid == -1)
 	{
 		perror("fork");
-		return (1);
+		return (0);
 	}
 	if (pid == 0)
 	{
 		if (execve(args[0], args, environ) == -1)
 		{
 			perror(command);
-			exit(1);
+			exit(127);
 		}
 	}
 	else
