@@ -1,5 +1,4 @@
 #include "shell.h"
-#include <sys/stat.h>
 
 /**
  * find_path - find the full of a command if it exists in the PATH.
@@ -8,13 +7,14 @@
  *
  * Return: the full path if found, or NULL if not found.
  */
+
 char *find_path(char *command)
 {
 	char *path, *token, *full_path;
 
 	if (access(command, X_OK) == 0)
 		return (strdup(command));
-	path = getenv("PATH");
+	path = _getenv("PATH=");
 	if (path == NULL)
 		return (NULL);
 	path = strdup(path);

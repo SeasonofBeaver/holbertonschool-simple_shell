@@ -22,5 +22,6 @@ int _exec(char **args, char *command);
 char *find_path(char *command);
 int extraCommands(char **args, char *input, int status, char *username);
 void printEnvironment(char **environ);
+char *_getenv(char *environmentName);
 
 #endif /* shell_h */
