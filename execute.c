@@ -19,7 +19,7 @@ int _exec(char **args, char *command)
 	pid = fork();
 	if (pid == -1)
 	{
-		perror("fork");
+		perror("fork process failed.");
 		return (0);
 	}
 	if (pid == 0)
