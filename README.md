@@ -41,7 +41,9 @@
 
  gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hshi
 
+
 ## Running Commands
+
 
 You can run the following commands in the shell:
 
@@ -51,3 +53,11 @@ $ /bin/ls
 $ echo "Hello, World!"
 $ env        # Display the current environment variables
 $ exit       # Exit the shell
+
+
+## Author 
+
+
+[@SeasonofBeaver](https://github.com/SeasonofBeaver)
+
+[@Tissem-ben](https://github.com/Tissem-Ben)
