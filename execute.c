@@ -26,7 +26,8 @@ int _exec(char **args, char *command)
 	{
 		if (execve(args[0], args, environ) == -1)
 		{
-			perror(command);
+			perror(stderr, "./hsh: %s: not found\n", strtok(command, " "));
+			free(args);
 			exit(127);
 		}
 	}
