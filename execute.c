@@ -11,7 +11,7 @@
  */
 
 
-int _exec(char **args, char *command)
+int _exec(char **args, char *command, char *input)
 {
 	pid_t pid = 0;
 	int status = 0, value = 0;
@@ -23,6 +23,8 @@ int _exec(char **args, char *command)
 		if (value == -1)
 		{
 			fprintf(stderr, "./hsh:  %s: not found\n", strtok(command, " "));
+			free(args);
+			free(input);
 			exit(127);
 		}
 		exit(EXIT_SUCCESS);
