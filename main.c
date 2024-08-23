@@ -12,12 +12,10 @@
  * @username: username to be freed if EOF
  */
 
-void checkIfEnded(char *input, ssize_t getlineLength, int status, char *username)
+void checkIfEnded(ssize_t getlineLength, int status)
 {
 	if (getlineLength == EOF)
 	{
-		free(input);
-		free(username);
 		if (isatty(STDIN_FILENO))
 			printf("\n");
 		exit(status);
@@ -42,7 +40,7 @@ int main(void)
 	{
 		printPrompt(username, currDir);
 		getlineLength = getline(&input, &maxLength, stdin);
-		checkIfEnded(input, getlineLength, status, username);
+		checkIfEnded(getlineLength, status);
 		command = input;
 		while (*command == ' ' || *command == '\t')
 			command++;
@@ -50,10 +48,10 @@ int main(void)
 			continue;
 		command[strlen(command) - 1] = '\0';
 		args = parseCommand(command);
-		if (extraCommands(args, input, status, username))
+		if (extraCommands(args, input, status))
 			continue;
 		if (strchr(args[0], '/') != NULL)
-			args[0] = strdup(args[0]);
+			args[0] = args[0];
 		else
 			args[0] = find_path(command);
 		if (args[0] == NULL)
@@ -68,8 +66,6 @@ int main(void)
 		}
 		free(args);
 	}
-	free(currDir);
-	free(username);
-	free(input);
+	free(args);
 	return (0);
 }

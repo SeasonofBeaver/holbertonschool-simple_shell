@@ -13,30 +13,33 @@
 
 int _exec(char **args, char *command)
 {
-	pid_t pid;
-	int status;
+	pid_t pid = 0;
+	int status = 0, value = 0;
 
 	pid = fork();
-	if (pid == -1)
-	{
-		perror("fork process failed.");
-		return (0);
-	}
 	if (pid == 0)
 	{
-		if (execve(args[0], args, environ) == -1)
+		value = execve(args[0], args, environ);
+		if (value == -1)
 		{
-			perror(command);
+			fprintf(stderr, "./hsh:  %s: not found\n", strtok(command, " "));
 			exit(127);
 		}
+		exit(EXIT_SUCCESS);
 	}
-	else
+	else if (pid > 0)
 	{
 		wait(&status);
 		if (WIFEXITED(status))
 		{
-			return (WEXITSTATUS(status));
+			status = WEXITSTATUS(status);
 		}
 	}
-	return (0);
+	else
+	{
+		perror("fork process failed.");
+		return (status);
+	}
+
+	return (status);
 }

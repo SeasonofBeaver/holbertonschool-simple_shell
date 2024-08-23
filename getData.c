@@ -26,12 +26,14 @@ char *getCurrentWorkingDirectory(void)
 
 char *getUsername(void)
 {
-	struct passwd *pw = getpwuid(geteuid());
+	char *username = NULL;
 
-	if (pw == NULL)
+	username = _getenv("USER=");
+
+	if (username == NULL)
 	{
-		perror("getpwuid");
-		exit(EXIT_FAILURE);
+		username = "root";
 	}
-	return (strdup(pw->pw_name));
+
+	return (username);
 }
