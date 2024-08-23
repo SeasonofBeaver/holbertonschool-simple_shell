@@ -8,8 +8,6 @@
  * @getlineLength: Length of the user input line
  *
  * @status: status to exit with
- *
- * @username: username to be freed if EOF
  */
 
 void checkIfEnded(char *input, ssize_t getlineLength, int status)

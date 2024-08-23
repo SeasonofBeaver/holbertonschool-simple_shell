@@ -7,6 +7,8 @@
  *
  * @command: the user input commandline
  *
+ * @input: user input to be freed if needed
+ *
  * Return: 0 if correct and non 0 if failed
  */
 
