@@ -11,7 +11,7 @@
 char **parseCommand(char *command)
 {
 	char **args = NULL;
-	unsigned int argc = 0, i = 0;
+	int argc = 0, i = 0;
 	char *token;
 
 	while (command[i] != '\0')

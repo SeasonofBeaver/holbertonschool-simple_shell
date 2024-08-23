@@ -10,34 +10,38 @@
 
 char *find_path(char *command)
 {
-	char *path = NULL, *token = NULL, *pathDir = NULL;
-	char *full_path = NULL, *pathCopy = NULL;
+	char *path, *token, *full_path;
 
+	if (access(command, X_OK) == 0)
+		return (strdup(command));
 	path = _getenv("PATH=");
 	if (path == NULL)
 		return (NULL);
-	pathCopy = strdup(path);
+	path = strdup(path);
+	if (path == NULL)
+	{
+		perror("strdup");
+		return (NULL);
+	}
 	token = strtok(path, ":");
 	while (token != NULL)
 	{
-		pathDir = strdup(token);
-		full_path = malloc(strlen(pathDir) + strlen(command) + 2);
+		full_path = malloc(strlen(token) + strlen(command) + 2);
 		if (full_path == NULL)
 		{
-			free(pathDir);
 			perror("malloc");
+			free(path);
 			return (NULL);
 		}
 		sprintf(full_path, "%s/%s", token, command);
-		free(pathDir);
 		if (access(full_path, X_OK) == 0)
 		{
-			free(pathCopy);
+			free(path);
 			return (full_path);
 		}
 		free(full_path);
 		token = strtok(NULL, ":");
 	}
-	free(pathCopy);
+	free(path);
 	return (NULL);
 }

@@ -50,7 +50,7 @@ int main(void)
 		if (extraCommands(args, input, status))
 			continue;
 		if (strchr(args[0], '/') != NULL)
-			args[0] = args[0];
+			args[0] = strdup(args[0]);
 		else
 			args[0] = find_path(command);
 		if (args[0] == NULL)
@@ -60,7 +60,7 @@ int main(void)
 		}
 		else
 		{
-			status = _exec(args, command, input);
+			status = _exec(args, command);
 			free(args[0]);
 		}
 		free(args);
